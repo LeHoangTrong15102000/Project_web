@@ -1,0 +1,93 @@
+/*mấy thz element ở trong thì được kế thừa chiều ngang từ thẻ <HTML> nhờ vào thuộc tính display: block*/
+
+/*block kế thừa hết chiều ngang và 2 block sẽ không nằm trên cùng một hàng*/
+
+/*Muốn nó nằm trên cùng một hàng thì sử dụng inline-block vẫn mang tính chất khối nhưng nằm trên cùng một hàng*/
+
+.header {
+  height: 120px;
+  background-image: linear-gradient(0, #fe6433, #f53e2d);
+}
+
+.header__navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*mặc định thì thẻ <ul> có padding = 40px*/
+.header__navbar-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+/*Cứ hiểu là khi cái navbar di chuyển thì thz separate luôn đứng yên nên position là absolute */
+.header__navbar-item {
+  margin: 0 8px;
+  position: relative;
+  min-height: 26px;
+}
+
+/*Và bây giờ muốn 2 thz ul lên cùng một hàng thì chúng ta sử dụng flex trong thẻ cha header__navbar*/
+/*Nó căn giữa được là nhờ có thz margin: 0 auto*/
+.header__navbar-item,
+.header__navbar-item-link {
+  display: inline-block;
+  font-size: 1.5rem;
+  color: var(--white-color);
+  text-decoration: none;
+  font-weight: 300;
+}
+
+.header__navbar-item:hover,
+.header__navbar-item-link:hover {
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+/*CSS cho thẻ chứa chữ và icon*/
+.header__navbar-item,
+.header__navbar-item-link,
+.header__navbar-icon-link {
+  display: inline-flex;
+  align-items: center; /*giúp cho icon và giữa căn giữa*/
+}
+
+.header__navbar-item--strong {
+  font-weight: 400;
+}
+
+/*dùng chiều ngang chiều dọc thì phải có thz background-color:*/
+/*Sang gốc right của item thì right: 0*/
+.header__navbar-item--separate::after {
+  content: "";
+  display: block;
+  position: absolute;
+  border-left: 1px solid #fb9086; /*mặc định solid nó sẽ là 2px*/
+  height: 16px;
+  right: -10px;
+  top: 50%;
+  transform: translateY(
+    -50%
+  ); /*-50% thì nó sẽ hiểu là 50% kích thước chiều cao của chính nó*/
+}
+
+.header__navbar-icon-link {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+.header__navbar-icon {
+  font-size: 1.8rem;
+  margin: 0 4px;
+}
+
+.header__navbar-title--no-pointer {
+  cursor: text;
+  color: var(--white-color);
+}
+
+.header__navbar-icon-link:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.7);
+}

@@ -1,0 +1,111 @@
+Xây dựng web shopee
+
+**********************************
+Code Giao diện cho phần header của trang web
+
+-- Dựng source base
+file base.css chúng ta sẽ code những thành phần chung vào trong này
+file main.css chúng ta sẽ code những thành phần riêng vào trong này
+
+
+-- Tạo reset CSS -> ổn
+
+
+-- Dựng CSS base -> ổn
+
+
+-- Dựng khung web
+        - Làm ra cái thẻ chứa toàn bộ website -> đến làm từng thành phần có trong website
+        1. -> Header
+        2. -> Container
+        3. -> Footer'
+
+        Nguyên tắt là từ ngoài vào, từ trên xuống
+
+        BEM - Block - Element- Modifier
+        Block là khối , Element là những thẻ con nằm trong khối đó, và Modifier là những thay đổi của Element
+
+        -> Đừng làm nóng vội hãy làm từ thằng header xuống
+
+-- Navbar CSS
+
+        -- Ôn lại kiến thước của CSS
+            -- Background-clip: tuỳ chọn tô màu background cho content hoặc padding trở vào hoặc border trở vào(phải có padding, border) -> có nghĩa là đổ màu background-color: từ đâu vào , border-box thì đổ từ border vào, padding-box thì đổ từ padding vào, content chỉ đồ tại phần content
+
+            -- background-image
+            -- background-size(bkground-size: 100px; thì nó sẽ hiểu là chiều ngang là 100px, chiều và chiều rộng auto tự động đúng tỉ lệ của ảnh)
+                -- background-size: 100% thì nó sẽ hiểu là chiếm hết trình duyệt màn hình
+                -- background-repeat: no-repeat -> để nó không lặp lại ảnh
+
+                - Bổ sung thêm cho thằng background-size-keyword; thay vì viết giá trị số cũ thể vào chúng ta có thể dùng keyword : contain(thì nó sẽ chọn cái chiều ko bị làm vỡ bức ảnh cho giá trị bằng kích thước màn hình) , còn cover (thì sẽ chọn chiều dài hơn trong bức ảnh tuy nhiên nó sẽ chấp nhận việc che khuất một phần của bức ảnh)
+
+            -- background-origin
+                -- Sẽ có những thuộc tính tương tự background-clip nhưng nó sẽ đi kèm với background-origin
+                -- Mặc định của background-origin: padding-box, Nếu muốn đổ từ lớp border vào thì dùng border-box, còn có thể đổ tại lớp content-box 
+
+
+            -- background-position
+
+                -- Giúp tùy chỉnh vị trí hình ảnh nền ở trong CSS 
+                -- background-position: top right; top left, bottom center,... trong trường hợp viết một giá trị thì giá trị thứ 2 nó sẽ tự hiểu là center
+                - Nếu trường hợp mà ghi là bg-position: 10px;-> thì nó sẽ tự động cách mép trái 10px và  tự động căn giữa màn hình
+                -- Trường hợp sử dụng keyword - top 20px right 20px
+                -- Trường hợp sử dụng giá trị tương đối và tuyệt đối: vd như: bg-position: 20px 50px(cách mép trái 20px mép trên 50px) (Trục được đặt ở mép trên bên trái) 
+
+            -- background-shorthand: viết tắt của image - repeat - position và size
+
+            vd: Cú pháp như sau background: url("hình ảnh") no repeat center / contain
+
+
+            -- Functions CSS: attr() -> vd: a::after {
+
+                    content: "(" attr(truyền giá trị vào) ")" -> cặp ngoặc "()" chỉ được sử dụng chung với thẻ <a> , Còn bình thường thì chúng ta lấy trực tiếp giá trị của nó 
+                    attr(giá trị)
+            }
+
+
+            -- Có thể dùng các phần tử biến giả trên website của chúng ta mà không cần phải viết mã HTML
+            -- .box::after {
+                    content: "" // là bắt buộc/ quan trong giúp element giả chúng ta có thể tồn tại được, content có thể viết chữ vào bên trong nó
+                    display: block // thz element giả không có display= block nên chúng ta phải thêm nó vào
+            } (mỗi một class chỉ tồn tại một before và after) ngoài ra còn các biến giả như:
+            ::first-letter , ::first-line, ::selection(selection là sự lựa chọn có nghĩa là phải bôi chuột vào thì nó mới ảnh hưởng đến cái đó)
+
+        Các position quen thuộc sử dụng trong CSS : Relative, Absolute, Fixed, Sticky
+                - Relative: không phụ thuộc vào đối tượng nào khác cả, nó sẽ lấy chính vị trí mà nó đang đứng làm gốc tọa độ luôn, sử dụng Relative có thể giúp đè lên các chữ khác -> chính vì công dụng v chúng ta có thể làm ra các navbar đè lên trình duyệt
+                ... Các thuộc tính top, left, bottom, right chỉ hoạt động khi nó có position mà thôi
+
+                - Absolute: phụ thuộc vào thẻ cha gần nhất có thuộc tính position để ô này lấy thẻ cha đó làm gốc tọa độ
+                        - Khi dùng absolute thì phải để ý rằng có một đối tượng là con của đối tượng khác, di chuyển vị trí của đối tượng con xung quanh đối tượng cha khi đó mới sử dụng tới thuộc tính position.
+
+                        - Một đối tượng khi có position: absolute thì nó sẽ tìm ra cái thẻ cha nào gần nhất có thuộc tính là position thì nó sẽ lấy thẻ cha đó làm gốc tọa độ không phân biết thuộc tính position của thẻ cha đó là gì(khi mà sử dụng cả top cả bottom thì nó sẽ ưu tiên thz top và khi sử dụng left - right thì nó sẽ ưu tiên thz left.)
+
+                        -> Ứng dụng position: absolute vào để phủ mờ thz cha khi sử dụng mở các navbar  hoặc thanh menu trên trình duyệt mobile
+                        top: 0, right: 0 , left: 0, bottom: 0
+                        - Nó chỉ coi thẻ gần nhất có thuộc tính position làm thẻ cha
+
+                - Fixed: ví dụ điển hình cho thuộc tính này là trong các trang web thì khi mà kéo lên kéo xuống thì thanh header vẫn đứng yên
+
+                        - Nhưng mà làm sao để phân biệt được thz nào sẽ dùng fixed thz nào sẽ dùng absolute
+                                - Khi mà  thấy một đối tượng phụ thuộc vào đối tượng khác trên giao diện thì sử dụng position: absolute.
+                                
+                                - Khi mà thấy một đối tượng phụ thuộc vào cửa sổ trình duyệt của chúng ta thì sẽ sử dụng position bằng fixed(cũng có thể không cần đặt widht: 100% -> có thể top: 0, right: 0 ,left: 0).
+
+
+                - Sticky(ít khi sử dụng): thường sẽ làm ra header , navbar bám dính trên trình duyệt khi mà chúng ta lăn chuột xuống, các thành phần khác thì chạy bình thường
+
+                - Hiện tại thì không được hỗ trợ trong nhiều trình duyệt
+
+                - Sau này khi học về JS  kết hợp với thuộc tính sẽ làm ra được công dụng y như thz sticky luôn.
+
+
+-- Nhúng font-icons
+        - để sau này nhấn vào được thì phải có thẻ <a>
+
+-- Icons CSS
+
+        - Chúng ta cần căn giữa chữ và icon ngang nhau
+        
+        - The span sinh ra với mục đích là chỉ để CSS cho một thz khác(CSS một thz duy nhất ko liên quan đến cả header)
+
+-- Search QR

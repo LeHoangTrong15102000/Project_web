@@ -1,0 +1,42 @@
+:root {
+  --white-color: #fff;
+  --black-color: #000;
+  --text-color: #333;
+}
+
+/*thz này sẽ apply thuộc tính CSS lên tất cả các file HTML được nhúng base.css*/
+* {
+  box-sizing: inherit;
+  /*Để inherit khi ở dưới chúng ta khia báo box-sizing: border-box để tất cả các thẻ HTMl nó kế thừa border-box -> để tất cả các element trong website chúng ta nó sẽ được kế thừa border-box*/
+
+  /*box-sizing: giúp cho kích thước ban đầu đặt khi mà thêm các padding border thì nó vẫn giữ nguyễn giá trị kích thước đã đặt nó chỉ hiệu chỉnh sao cho phù hợp với kích thước đã được đặt
+  
+  -- Kích thước content nó sẽ tự động tính toán để làm sao khi công với padding margin border phư hợp với kích thước chuẩn ban đầu
+
+  -- Phải đảm bảo padding , border nằm trong ngưỡng cho phép của kích thước của chúng ta, các thuộc tính của box-sizing: content-box, border-box, unset, inherit
+  */
+}
+
+html {
+  /*Mặc định là 16px*/
+  font-size: 62.5%; /*Ở đây để đơn giản chúng ta sẽ đưa về 62.5% tương ứng với 10px*/
+  line-height: 1.6rem;
+  font-family: "Roboto", sans-serif;
+}
+
+/*Chuẩn bị nền móng làm responsive*/
+
+.grid {
+  width: 1440px;
+  max-width: 100%;
+  margin: 0 auto; /*Tự động căn giữa thz grid khi nó năm trong khối khác*/
+}
+
+.grid__full-width {
+  width: 100%;
+}
+
+.grid__row {
+  display: flex;
+  flex-wrap: wrap;
+}
